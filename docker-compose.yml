@@ -1,0 +1,40 @@
+version: '3.9'
+services:
+  backend:
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    image: backend-image
+    ports:
+     - 4000:3000
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+
+  frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    image: frontend-image
+    ports:
+      - 8080:80
+
+  postgres:
+    container_name: db-container
+    restart: always
+    image: postgres
+    volumes:
+      - postgres_data:/db-data
+    env_file:
+      - .env
+
+  adminer:
+    container_name: adminer
+    image: adminer
+    ports:
+      - 8081:8080
+
+volumes:
+  postgres_data:
+
