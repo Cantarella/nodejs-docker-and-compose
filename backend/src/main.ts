@@ -8,7 +8,7 @@ import { nestCsrf } from 'ncsrf';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
-      "origin": [/(cantarella)+.*\.ru$/],
+      "origin": [/(cantarella)+.*\.ru$/, 'http://localhost:8080/', 'http://localhost:8080'],
       "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
       "preflightContinue": false,
       "optionsSuccessStatus": 204

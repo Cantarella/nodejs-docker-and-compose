@@ -15,7 +15,7 @@ const headersWithAuthorizeFn = () => ({
 });
 
 export const registerUser = (userData) => {
-  return fetch(`${URL}/signup/`, {
+  return fetch(`${URL}/auth/signup`, {
     method: "POST",
     headers: headersWithContentType,
     body: JSON.stringify(userData),
@@ -23,7 +23,7 @@ export const registerUser = (userData) => {
 };
 
 export const loginUser = (username, password) => {
-  return fetch(`${URL}/signin/`, {
+  return fetch(`${URL}/auth/signin`, {
     method: "POST",
     headers: headersWithContentType,
     body: JSON.stringify({ username, password }),
@@ -48,7 +48,7 @@ export const refreshAndSet = (method, contextSetter) => {
 };
 
 export const getOwnUser = () => {
-  return fetch(`${URL}/users/me/`, {
+  return fetch(`${URL}/users/me`, {
     method: "GET",
     headers: headersWithAuthorizeFn(),
   }).then(checkResponse);
@@ -63,7 +63,7 @@ export const refreshUser = (contextSetter) => {
 };
 
 export const updateProfile = (user) => {
-  return fetch(`${URL}/users/me/`, {
+  return fetch(`${URL}/users/me`, {
     method: "PATCH",
     headers: headersWithAuthorizeFn(),
     body: JSON.stringify(user),
@@ -71,7 +71,7 @@ export const updateProfile = (user) => {
 };
 
 export const getCards = (page = 1) => {
-  return fetch(`${URL}/wishes/`, {
+  return fetch(`${URL}/wishes`, {
     method: "GET",
     headers: headersWithAuthorizeFn(),
   }).then(checkResponse);
